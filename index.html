@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bubub</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+
+        background-image: url("bub.jpeg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+
+        background-color: rgba(255, 200, 220, 0.4);
+        background-blend-mode: lighten;
+      }
+
+      .overlay {
+        width: 100%;
+        min-height: 100vh;
+        background: rgba(255, 225, 240, 0.55);
+        backdrop-filter: blur(6px);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .card {
+        background: rgba(255, 200, 220, 0.65);
+        padding: 28px;
+        border-radius: 20px;
+        max-width: 380px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(255, 120, 180, 0.35);
+        animation: fadeIn 0.8s ease;
+      }
+
+      #stiker {
+        width: 120px;
+        max-width: 40%;
+        margin-bottom: 10px;
+        animation: pop 0.5s ease;
+      }
+
+      h1 {
+        color: #ff5c9d;
+        margin-bottom: 10px;
+        font-size: 26px;
+      }
+
+      p {
+        color: #d6336c;
+        font-size: 16px;
+        line-height: 1.6;
+        min-height: 100px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 26px;
+        background: #ff88bb;
+        color: white;
+        font-weight: 600;
+        border-radius: 18px;
+        text-decoration: none;
+        box-shadow: 0 5px 15px rgba(255, 100, 150, 0.45);
+        transition: 0.2s;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        background: #ff5c9d;
+        transform: scale(1.07);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pop {
+        from {
+          transform: scale(0.65);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .card {
+          padding: 22px;
+          border-radius: 18px;
+        }
+
+        h1 {
+          font-size: 22px;
+        }
+
+        p {
+          font-size: 15px;
+        }
+
+        #stiker {
+          width: 95px;
+        }
+      }
+
+      @media (min-width: 480px) and (max-width: 820px) {
+        .card {
+          max-width: 450px;
+        }
+        #stiker {
+          width: 130px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="overlay">
+      <div class="card">
+        <img id="stiker" alt="cute sticker" />
+
+        <h1>Hai bubub ❤️</h1>
+        <p id="textSlide"></p>
+        <a id="btnNext" class="btn" onclick="nextSlide()">Next</a>
+      </div>
+    </div>
+
+    <script>
+      let slide = 0;
+
+      const slides = [
+        "Bubub, aku tau kamu lagi ngambek…",
+        "Aku cuma mau bilang kalau aku sayang banget sama bubub.",
+        "Maafin aku yaa… aku ga mau bikin bubub sedih.",
+        "Aku bakal selalu sayang bubub tiap hari. ❤️",
+        "Kalau bubub udah mau maafin… tekan tombol di bawah ini 💗",
+      ];
+
+      /* FEELDREAMS GIFT — seperti permintaanmu */
+      const stickers = [
+        "https://feeldreams.github.io/pusn.gif",
+        "https://feeldreams.github.io/gigitin.gif",
+        "https://feeldreams.github.io/mmm.gif",
+        "https://feeldreams.github.io/pandaputih.gif",
+        "https://feeldreams.github.io/bwa2.gif",
+      ];
+
+      const text = document.getElementById("textSlide");
+      const stiker = document.getElementById("stiker");
+      const btn = document.getElementById("btnNext");
+
+      text.innerHTML = slides[0];
+      stiker.src = stickers[0];
+
+      function nextSlide() {
+        slide++;
+
+        if (slide < slides.length) {
+          text.innerHTML = slides[slide];
+          stiker.src = stickers[slide % stickers.length];
+
+          stiker.style.animation = "none";
+          setTimeout(() => (stiker.style.animation = "pop 0.5s ease"), 10);
+        }
+
+        if (slide === slides.length - 1) {
+          btn.innerHTML = "iyaa aku maafinn 💗";
+          btn.href = "https://wa.me/6281947761322?text=iyaa%20aku%20maafinn";
+          btn.setAttribute("target", "_blank");
+          btn.removeAttribute("onclick");
+        }
+      }
+    </script>
+  </body>
+</html>
